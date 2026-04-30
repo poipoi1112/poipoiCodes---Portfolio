@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>poipoiCodes — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #1a1a2e;           
+      --window-bg: #0f3460;
+      --window-border: #e94560;
+      --accent: #e94560;
+      --accent2: #f5a623;
+      --accent3: #00d2ff;
+      --text: #eaeaea;
+      --text-dim: #a0aec0;
+      --pixel: "Press Start 2P", monospace;
+      --mono: "VT323", monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(233,69,96,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233,69,96,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      font-family: var(--pixel);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 14px;
+      color: var(--accent2);
+      letter-spacing: 4px;
+      margin-bottom: 28px;
+      text-shadow: 2px 2px 0 var(--accent);
+      animation: flicker 3s infinite;
+    }
+
+    /* Flickering animation for the title */
+    @keyframes flicker {
+      0%, 96%, 100% { opacity: 1; }
+      97% { opacity: 0.4; }
+      98% { opacity: 1; }
+      99% { opacity: 0.3; }
+    }
+
+    .window {
+      background: var(--window-bg);
+      border: 3px solid var(--window-border);
+      border-radius: 0;
+      /* Pixel-style shadow */
+      box-shadow: 6px 6px 0 var(--accent);
+      margin-bottom: 24px;
+      overflow: hidden;
+      /* Fade-in on page load */
+      animation: slideIn 0.5s ease both;
+    }
+
+    .window:nth-child(1) { animation-delay: 0.1s; }
+    .window:nth-child(2) { animation-delay: 0.2s; }
+    .window:nth-child(3) { animation-delay: 0.3s; }
+    .window:nth-child(4) { animation-delay: 0.4s; }
+    .window:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .window-bar {
+      background: var(--accent);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .dot:hover { transform: scale(1.3); }
+    .dot.red    { background: #ff5f57; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green  { background: #28c940; }
+
+    .window-title {
+      font-size: 8px;
+      color: white;
+      letter-spacing: 2px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .window-body {
+      padding: 20px;
+    }
+
+    .profile-section {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      border: 4px solid var(--accent3);
+      box-shadow: 4px 4px 0 var(--accent2);
+      overflow: hidden;
+      image-rendering: auto;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .profile-info h1 {
+      font-size: 11px;
+      color: var(--accent2);
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    .profile-info p {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .profile-info p span.icon {
+      color: var(--accent3);
+      margin-right: 6px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .summary-text {
+      font-family: var(--mono);
+      font-size: 19px;
+      line-height: 1.7;
+      color: var(--text);
+      /* Slightly dimmed box */
+      background: rgba(0,0,0,0.2);
+      padding: 14px;
+      border-left: 3px solid var(--accent3);
+      margin-top: 10px;
+    }
+
+    .section-label {
+      font-size: 9px;
+      color: var(--accent3);
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--accent3);
+      opacity: 0.3;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-badge {
+      font-family: var(--pixel);
+      font-size: 6px;
+      padding: 8px 12px;
+      border: 2px solid var(--accent2);
+      color: var(--accent2);
+      background: rgba(245,166,35,0.1);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 1px;
+    }
+
+    .skill-badge:hover {
+      background: var(--accent2);
+      color: var(--bg);
+      transform: translate(-2px, -2px);
+      box-shadow: 2px 2px 0 white;
+    }
+
+    .exp-item {
+      margin-bottom: 18px;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .exp-title {
+      font-size: 7px;
+      color: var(--accent2);
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--accent3);
+      margin-bottom: 6px;
+    }
+
+    .exp-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-list li {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .exp-list li::before {
+      content: '>';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+
+    .edu-item {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .edu-item .school {
+      color: var(--accent3);
+      font-size: 16px;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .contact-btn {
+      font-family: var(--pixel);
+      font-size: 7px;
+      padding: 10px 16px;
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+    }
+
+    .contact-btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translate(-2px, -2px);
+      box-shadow: 2px 2px 0 var(--accent2);
+    }
+
+    .footer {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 16px;
+      color: var(--text-dim);
+      margin-top: 30px;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 480px) {
+      .profile-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-info p {
+        font-size: 16px;
+      }
+      .page-title {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="page-title">✦ poipoiCodes ✦</h2>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">WWW.ABOUT.ME</span>
+    </div>
+
+    <div class="window-body">
+      <div class="profile-section">
+
+        <div class="profile-photo">
+          <img src="poipoi.png" alt="Dimples F. Suing" />
+        </div>
+
+        <div class="profile-info">
+          <h1>DIMPLES F. SUING<span class="cursor"></span></h1>
+          <p><span class="icon">📍</span> San Matias, Lubao, Pampanga, PH</p>
+          <p><span class="icon">📞</span> 0947-769-9496</p>
+          <p><span class="icon">✉️</span> dimplessuing.10@gmail.com</p>
+        </div>
+
+      </div>
+
+      <div class="summary-text">
+        Detail-oriented aspiring Virtual Assistant with experience in marketing support, administrative tasks, and customer communication. Skilled in data entry, email and calendar management, and digital file organization. Proficient in Google Workspace, Microsoft Excel, and task management tools. Reliable, organized, and capable of supporting remote business operations with efficiency and accuracy.
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">SKILLS.EXE</span>
+    </div>
+
+    <div class="window-body">
+      <p class="section-label">// TECHNICAL SKILLS</p>
+
+      <div class="skills-grid">
+        <div class="skill-badge">GOOGLE WORSPACE</div>
+        <div class="skill-badge">MICROSOFT EXCEL</div>
+        <div class="skill-badge">EMAIL MANAGEMENT</div>
+        <div class="skill-badge">NOTION</div>
+        <div class="skill-badge">TRELLO</div>
+        <div class="skill-badge">SLACK</div>
+        <div class="skill-badge">EMAIL & CALENDAR MANAGEMENT</div>
+        <div class="skill-badge">FILE & DATA ORGANIZATION</div>
+        <div class="skill-badge">HTML</div>
+        <div class="skill-badge">CSS</div>
+        <div class="skill-badge">JAVASCRIPT</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">SKILLS.EXE</span>
+    </div>
+
+  <div class="window-body">
+      <p class="section-label">// CORE COMPETENCIES</p>
+
+      <div class="skills-grid">
+        <div class="skill-badge">Communication (email and chat support)</div>
+        <div class="skill-badge">Time Management & Task Prioritization</div>
+        <div class="skill-badge">Attention to Detail</div>
+        <div class="skill-badge">Reliability & Accountability</div>
+        <div class="skill-badge">Problem-Solving & Initiative</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">EXPERIENCE.LOG</span>
+    </div>
+
+    <div class="window-body">
+      <p class="section-label">// WORKED AS</p>
+
+      <div class="exp-item">
+        <p class="exp-title">MARKETING STAFF</p>
+        <p class="exp-company">J&L Decorative Blocks</p>
+        <ul class="exp-list">
+          <li>Assisted with marketing activities and product promotion</li>
+          <li>Responded to customer inquiries and provided support</li>
+          <li>Organized files and maintained records using Microsoft Office</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">EDUCATION.TXT</span>
+    </div>
+
+    <div class="window-body">
+      <p class="section-label">// SCHOOL</p>
+
+      <div class="edu-item">
+        <p>Senior High School Graduate</p>
+        <p class="school">Eastwoods International Institute of Science and Technology</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">CONTACT.ME</span>
+    </div>
+
+    <div class="window-body">
+      <p class="section-label">// GET IN TOUCH</p>
+
+      <div class="contact-bar">
+        <a class="contact-btn" href="mailto:dimplessuing.10@gmail.com">✉ EMAIL ME</a>
+        <a class="contact-btn" href="tel:09477699496">📞 CALL ME</a>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="footer">© 2026 DIMPLES F. SUING — MADE WITH ♥</p>
+
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    const dots = document.querySelectorAll('.dot');
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+
+        const window = dot.closest('.window');
+
+        if (dot.classList.contains('red')) {
+          window.style.transform = 'translateX(5px)';
+          setTimeout(function() { window.style.transform = 'translateX(-5px)'; }, 100);
+          setTimeout(function() { window.style.transform = 'translateX(0)'; }, 200);
+
+        } else if (dot.classList.contains('yellow')) {
+          window.style.borderColor = '#ffbd2e';
+          setTimeout(function() { window.style.borderColor = ''; }, 500);
+
+        } else if (dot.classList.contains('green')) {
+          const titleBar = window.querySelector('.window-title');
+          const original = titleBar.textContent;
+          titleBar.textContent = '✓ MAXIMIZED!';
+          setTimeout(function() { titleBar.textContent = original; }, 1000);
+        }
+
+      });
+    });
+  </script>
+
+</body>
+</html>

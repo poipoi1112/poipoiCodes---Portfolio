@@ -309,6 +309,51 @@
       box-shadow: 2px 2px 0 var(--accent2);
     }
 
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .project-card {
+      display: flex;
+      gap: 16px;
+      text-decoration: none;
+      background: rgba(0,0,0,0.2);
+      border: 3px solid var(--accent3);
+      padding: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .project-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    .project-preview {
+      width: 260px;
+      height: 150px;
+      object-fit: cover;
+      border: 3px solid var(--accent2);
+      flex-shrink: 0;
+    }
+
+    .project-content h3 {
+      font-size: 8px;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .project-content p {
+      font-family: var(--mono);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
     .footer {
       text-align: center;
       font-family: var(--mono);
@@ -460,7 +505,68 @@
 
     </div>
   </div>
+  <div class="window">
+  <div class="window-bar">
+    <div class="dots">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <span class="window-title">PROJECTS.EXE</span>
+  </div>
 
+  <div class="window-body">
+
+    <p class="section-label">// FEATURED PROJECTS</p>
+
+    <div class="projects-grid">
+
+      <a
+        href="https://poipoi1112.github.io/poipoiCodes---Shoku/"
+        target="_blank"
+        class="project-card"
+      >
+        <img
+          src="shoku-preview.png"
+          alt="Shoku Preview"
+          class="project-preview"
+        >
+
+        <div class="project-content">
+          <h3>SHOKU</h3>
+          <p>
+            Japanese-inspired restaurant website featuring
+            retro pixel aesthetics, interactive food menus,
+            and a responsive user interface.
+          </p>
+        </div>
+      </a>
+
+      <a
+        href="https://poipoi1112.github.io/poipoiCodes---Mori/"
+        target="_blank"
+        class="project-card"
+      >
+        <img
+          src="mori-preview.png"
+          alt="Mori Preview"
+          class="project-preview"
+        >
+
+        <div class="project-content">
+          <h3>MORI</h3>
+          <p>
+            Modern café website inspired by Japanese
+            minimalism with clean layouts, responsive design,
+            and smooth user experience.
+          </p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</div>
   <div class="window">
     <div class="window-bar">
       <div class="dots">

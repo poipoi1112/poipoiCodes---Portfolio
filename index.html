@@ -7,30 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet"/>
 
   <style>
+    /* ===== TOKENS ===== */
     :root {
-      --bg: #1a1a2e;           
-      --window-bg: #0f3460;
-      --window-border: #e94560;
-      --accent: #e94560;
-      --accent2: #f5a623;
-      --accent3: #00d2ff;
-      --text: #eaeaea;
-      --text-dim: #a0aec0;
-      --pixel: "Press Start 2P", monospace;
-      --mono: "VT323", monospace;
+      --bg:             #1a1a2e;
+      --window-bg:      #0f3460;
+      --window-border:  #e94560;
+      --accent:         #e94560;
+      --accent2:        #f5a623;
+      --accent3:        #00d2ff;
+      --text:           #eaeaea;
+      --text-dim:       #a0aec0;
+      --pixel:          "Press Start 2P", monospace;
+      --mono:           "VT323", monospace;
     }
 
-    * {
+    /* ===== RESET ===== */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* ===== BASE ===== */
     body {
       background-color: var(--bg);
       background-image:
-        linear-gradient(rgba(233,69,96,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(233,69,96,0.05) 1px, transparent 1px);
+        linear-gradient(rgba(233, 69, 96, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233, 69, 96, 0.05) 1px, transparent 1px);
       background-size: 32px 32px;
       font-family: var(--pixel);
       color: var(--text);
@@ -38,9 +41,10 @@
       padding: 24px 16px 60px;
     }
 
+    /* ===== PAGE TITLE ===== */
     .page-title {
       text-align: center;
-      font-size: 14px;
+      font-size: clamp(9px, 3vw, 14px);
       color: var(--accent2);
       letter-spacing: 4px;
       margin-bottom: 28px;
@@ -48,37 +52,37 @@
       animation: flicker 3s infinite;
     }
 
-    /* Flickering animation for the title */
     @keyframes flicker {
       0%, 96%, 100% { opacity: 1; }
-      97% { opacity: 0.4; }
-      98% { opacity: 1; }
-      99% { opacity: 0.3; }
+      97%           { opacity: 0.4; }
+      98%           { opacity: 1; }
+      99%           { opacity: 0.3; }
     }
 
+    /* ===== WINDOW ===== */
     .window {
       background: var(--window-bg);
       border: 3px solid var(--window-border);
-      border-radius: 0;
-      /* Pixel-style shadow */
       box-shadow: 6px 6px 0 var(--accent);
       margin-bottom: 24px;
       overflow: hidden;
-      /* Fade-in on page load */
       animation: slideIn 0.5s ease both;
     }
 
-    .window:nth-child(1) { animation-delay: 0.1s; }
-    .window:nth-child(2) { animation-delay: 0.2s; }
-    .window:nth-child(3) { animation-delay: 0.3s; }
-    .window:nth-child(4) { animation-delay: 0.4s; }
-    .window:nth-child(5) { animation-delay: 0.5s; }
+    .window:nth-child(2) { animation-delay: 0.1s; }
+    .window:nth-child(3) { animation-delay: 0.2s; }
+    .window:nth-child(4) { animation-delay: 0.3s; }
+    .window:nth-child(5) { animation-delay: 0.4s; }
+    .window:nth-child(6) { animation-delay: 0.5s; }
+    .window:nth-child(7) { animation-delay: 0.6s; }
+    .window:nth-child(8) { animation-delay: 0.7s; }
 
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ===== WINDOW BAR ===== */
     .window-bar {
       background: var(--accent);
       padding: 8px 12px;
@@ -90,6 +94,7 @@
     .dots {
       display: flex;
       gap: 6px;
+      flex-shrink: 0;
     }
 
     .dot {
@@ -99,10 +104,10 @@
       cursor: pointer;
       transition: transform 0.1s;
     }
-    .dot:hover { transform: scale(1.3); }
-    .dot.red    { background: #ff5f57; }
-    .dot.yellow { background: #ffbd2e; }
-    .dot.green  { background: #28c940; }
+    .dot:hover   { transform: scale(1.3); }
+    .dot.red     { background: #ff5f57; }
+    .dot.yellow  { background: #ffbd2e; }
+    .dot.green   { background: #28c940; }
 
     .window-title {
       font-size: 8px;
@@ -112,80 +117,12 @@
       text-align: center;
     }
 
+    /* ===== WINDOW BODY ===== */
     .window-body {
       padding: 20px;
     }
 
-    .profile-section {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .profile-photo {
-      width: 110px;
-      height: 110px;
-      flex-shrink: 0;
-      border: 4px solid var(--accent3);
-      box-shadow: 4px 4px 0 var(--accent2);
-      overflow: hidden;
-      image-rendering: auto;
-    }
-
-    .profile-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-
-    .profile-info h1 {
-      font-size: 11px;
-      color: var(--accent2);
-      margin-bottom: 10px;
-      line-height: 1.8;
-    }
-
-    .profile-info p {
-      font-family: var(--mono);
-      font-size: 18px;
-      color: var(--text-dim);
-      line-height: 1.5;
-      margin-bottom: 4px;
-    }
-
-    .profile-info p span.icon {
-      color: var(--accent3);
-      margin-right: 6px;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      background: var(--accent);
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-      margin-left: 4px;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .summary-text {
-      font-family: var(--mono);
-      font-size: 19px;
-      line-height: 1.7;
-      color: var(--text);
-      /* Slightly dimmed box */
-      background: rgba(0,0,0,0.2);
-      padding: 14px;
-      border-left: 3px solid var(--accent3);
-      margin-top: 10px;
-    }
-
+    /* ===== SECTION LABEL ===== */
     .section-label {
       font-size: 9px;
       color: var(--accent3);
@@ -204,6 +141,83 @@
       opacity: 0.3;
     }
 
+    /* ===== ABOUT: PROFILE ===== */
+    .profile-section {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      border: 4px solid var(--accent3);
+      box-shadow: 4px 4px 0 var(--accent2);
+      overflow: hidden;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .profile-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-info h1 {
+      font-size: clamp(8px, 2.5vw, 11px);
+      color: var(--accent2);
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    .profile-info p {
+      font-family: var(--mono);
+      font-size: clamp(15px, 4vw, 18px);
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+
+    .profile-info p .icon {
+      color: var(--accent3);
+      margin-right: 6px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ===== ABOUT: SUMMARY ===== */
+    .summary-text {
+      font-family: var(--mono);
+      font-size: clamp(16px, 4vw, 19px);
+      line-height: 1.7;
+      color: var(--text);
+      background: rgba(0, 0, 0, 0.2);
+      padding: 14px;
+      border-left: 3px solid var(--accent3);
+      margin-top: 16px;
+    }
+
+    /* ===== SKILLS ===== */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
@@ -216,7 +230,7 @@
       padding: 8px 12px;
       border: 2px solid var(--accent2);
       color: var(--accent2);
-      background: rgba(245,166,35,0.1);
+      background: rgba(245, 166, 35, 0.1);
       cursor: pointer;
       transition: all 0.15s;
       letter-spacing: 1px;
@@ -229,6 +243,7 @@
       box-shadow: 2px 2px 0 white;
     }
 
+    /* ===== EXPERIENCE ===== */
     .exp-item {
       margin-bottom: 18px;
       padding-left: 14px;
@@ -244,19 +259,18 @@
 
     .exp-company {
       font-family: var(--mono);
-      font-size: 17px;
+      font-size: clamp(15px, 4vw, 17px);
       color: var(--accent3);
       margin-bottom: 6px;
     }
 
     .exp-list {
       list-style: none;
-      padding: 0;
     }
 
     .exp-list li {
       font-family: var(--mono);
-      font-size: 17px;
+      font-size: clamp(15px, 4vw, 17px);
       color: var(--text-dim);
       line-height: 1.6;
       padding-left: 14px;
@@ -270,18 +284,65 @@
       left: 0;
     }
 
+    /* ===== EDUCATION ===== */
     .edu-item {
       font-family: var(--mono);
-      font-size: 18px;
+      font-size: clamp(15px, 4vw, 18px);
       color: var(--text);
       line-height: 1.8;
     }
 
     .edu-item .school {
       color: var(--accent3);
-      font-size: 16px;
+      font-size: clamp(14px, 3.5vw, 16px);
     }
 
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .project-card {
+      display: flex;
+      gap: 16px;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.2);
+      border: 3px solid var(--accent3);
+      padding: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .project-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    .project-preview {
+      width: 200px;
+      height: 130px;
+      object-fit: cover;
+      border: 3px solid var(--accent2);
+      flex-shrink: 0;
+    }
+
+    .project-content h3 {
+      font-size: 8px;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .project-content p {
+      font-family: var(--mono);
+      font-size: clamp(15px, 4vw, 18px);
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    /* ===== CONTACT ===== */
     .contact-bar {
       display: flex;
       flex-wrap: wrap;
@@ -309,51 +370,7 @@
       box-shadow: 2px 2px 0 var(--accent2);
     }
 
-
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .project-card {
-      display: flex;
-      gap: 16px;
-      text-decoration: none;
-      background: rgba(0,0,0,0.2);
-      border: 3px solid var(--accent3);
-      padding: 14px;
-      transition: all 0.15s ease;
-    }
-
-    .project-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 var(--accent2);
-      border-color: var(--accent2);
-    }
-
-    .project-preview {
-      width: 260px;
-      height: 150px;
-      object-fit: cover;
-      border: 3px solid var(--accent2);
-      flex-shrink: 0;
-    }
-
-    .project-content h3 {
-      font-size: 8px;
-      color: var(--accent2);
-      margin-bottom: 12px;
-      letter-spacing: 2px;
-    }
-
-    .project-content p {
-      font-family: var(--mono);
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--text-dim);
-    }
-
+    /* ===== FOOTER ===== */
     .footer {
       text-align: center;
       font-family: var(--mono);
@@ -363,17 +380,45 @@
       opacity: 0.5;
     }
 
-    @media (max-width: 480px) {
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      body {
+        padding: 16px 12px 48px;
+      }
+
       .profile-section {
         flex-direction: column;
         align-items: center;
         text-align: center;
       }
-      .profile-info p {
-        font-size: 16px;
+
+      .profile-info {
+        width: 100%;
       }
-      .page-title {
-        font-size: 9px;
+
+      .project-card {
+        flex-direction: column;
+      }
+
+      .project-preview {
+        width: 100%;
+        height: 180px;
+      }
+
+      .window {
+        box-shadow: 4px 4px 0 var(--accent);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .window-title {
+        font-size: 6px;
+        letter-spacing: 1px;
+      }
+
+      .skill-badge {
+        font-size: 5px;
+        padding: 7px 10px;
       }
     }
   </style>
@@ -382,6 +427,7 @@
 
   <h2 class="page-title">✦ poipoiCodes ✦</h2>
 
+  <!-- ABOUT -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -391,29 +437,25 @@
       </div>
       <span class="window-title">WWW.ABOUT.ME</span>
     </div>
-
     <div class="window-body">
       <div class="profile-section">
-
         <div class="profile-photo">
           <img src="poipoi.png" alt="Dimples F. Suing" />
         </div>
-
         <div class="profile-info">
           <h1>DIMPLES F. SUING<span class="cursor"></span></h1>
           <p><span class="icon">📍</span> San Matias, Lubao, Pampanga, PH</p>
           <p><span class="icon">📞</span> 0947-769-9496</p>
           <p><span class="icon">✉️</span> dimplessuing.10@gmail.com</p>
         </div>
-
       </div>
-
       <div class="summary-text">
         Aspiring Front-End Web Developer with experience in marketing support, administrative tasks, and customer communication. Skilled in HTML, CSS, and JavaScript.
       </div>
     </div>
   </div>
 
+  <!-- TECHNICAL SKILLS -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -423,12 +465,10 @@
       </div>
       <span class="window-title">SKILLS.EXE</span>
     </div>
-
     <div class="window-body">
       <p class="section-label">// TECHNICAL SKILLS</p>
-
       <div class="skills-grid">
-        <div class="skill-badge">CAPCUT/VIDEO EDITING</div>
+        <div class="skill-badge">CAPCUT / VIDEO EDITING</div>
         <div class="skill-badge">HTML</div>
         <div class="skill-badge">CSS</div>
         <div class="skill-badge">JAVASCRIPT</div>
@@ -436,6 +476,7 @@
     </div>
   </div>
 
+  <!-- CORE COMPETENCIES -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -445,10 +486,8 @@
       </div>
       <span class="window-title">SKILLS.EXE</span>
     </div>
-
-  <div class="window-body">
+    <div class="window-body">
       <p class="section-label">// CORE COMPETENCIES</p>
-
       <div class="skills-grid">
         <div class="skill-badge">Communication</div>
         <div class="skill-badge">Time Management & Task Prioritization</div>
@@ -459,6 +498,7 @@
     </div>
   </div>
 
+  <!-- EXPERIENCE -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -468,10 +508,8 @@
       </div>
       <span class="window-title">EXPERIENCE.LOG</span>
     </div>
-
     <div class="window-body">
       <p class="section-label">// WORKED AS</p>
-
       <div class="exp-item">
         <p class="exp-title">MARKETING STAFF</p>
         <p class="exp-company">J&L Decorative Blocks</p>
@@ -481,10 +519,10 @@
           <li>Organized files and maintained records using Microsoft Office</li>
         </ul>
       </div>
-
     </div>
   </div>
 
+  <!-- EDUCATION -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -494,79 +532,56 @@
       </div>
       <span class="window-title">EDUCATION.TXT</span>
     </div>
-
     <div class="window-body">
       <p class="section-label">// SCHOOL</p>
-
       <div class="edu-item">
         <p>Senior High School Graduate</p>
         <p class="school">Eastwoods International Institute of Science and Technology</p>
       </div>
-
     </div>
   </div>
+
+  <!-- PROJECTS -->
   <div class="window">
-  <div class="window-bar">
-    <div class="dots">
-      <div class="dot red"></div>
-      <div class="dot yellow"></div>
-      <div class="dot green"></div>
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <span class="window-title">PROJECTS.EXE</span>
     </div>
-    <span class="window-title">PROJECTS.EXE</span>
+    <div class="window-body">
+      <p class="section-label">// FEATURED PROJECTS</p>
+      <div class="projects-grid">
+
+        <a href="https://poipoi1112.github.io/poipoiCodes---Shoku/" target="_blank" class="project-card">
+          <img src="shoku-preview.png" alt="Shoku Preview" class="project-preview" />
+          <div class="project-content">
+            <h3>SHOKU</h3>
+            <p>
+              Japanese-inspired restaurant website featuring retro pixel aesthetics,
+              interactive food menus, and a responsive user interface.
+            </p>
+          </div>
+        </a>
+
+        <a href="https://poipoi1112.github.io/poipoiCodes---Mori/" target="_blank" class="project-card">
+          <img src="mori-preview.png" alt="Mori Preview" class="project-preview" />
+          <div class="project-content">
+            <h3>MORI</h3>
+            <p>
+              Modern café website inspired by Japanese minimalism with clean layouts,
+              responsive design, and smooth user experience.
+            </p>
+          </div>
+        </a>
+
+      </div>
+    </div>
   </div>
 
-  <div class="window-body">
-
-    <p class="section-label">// FEATURED PROJECTS</p>
-
-    <div class="projects-grid">
-
-      <a
-        href="https://poipoi1112.github.io/poipoiCodes---Shoku/"
-        target="_blank"
-        class="project-card"
-      >
-        <img
-          src="shoku-preview.png"
-          alt="Shoku Preview"
-          class="project-preview"
-        >
-
-        <div class="project-content">
-          <h3>SHOKU</h3>
-          <p>
-            Japanese-inspired restaurant website featuring
-            retro pixel aesthetics, interactive food menus,
-            and a responsive user interface.
-          </p>
-        </div>
-      </a>
-
-      <a
-        href="https://poipoi1112.github.io/poipoiCodes---Mori/"
-        target="_blank"
-        class="project-card"
-      >
-        <img
-          src="mori-preview.png"
-          alt="Mori Preview"
-          class="project-preview"
-        >
-
-        <div class="project-content">
-          <h3>MORI</h3>
-          <p>
-            Modern café website inspired by Japanese
-            minimalism with clean layouts, responsive design,
-            and smooth user experience.
-          </p>
-        </div>
-      </a>
-
-    </div>
-
-  </div>
-</div>
+  <!-- CONTACT -->
   <div class="window">
     <div class="window-bar">
       <div class="dots">
@@ -576,46 +591,38 @@
       </div>
       <span class="window-title">CONTACT.ME</span>
     </div>
-
     <div class="window-body">
       <p class="section-label">// GET IN TOUCH</p>
-
       <div class="contact-bar">
         <a class="contact-btn" href="mailto:dimplessuing.10@gmail.com">✉ EMAIL ME</a>
         <a class="contact-btn" href="tel:09477699496">📞 CALL ME</a>
       </div>
-
     </div>
   </div>
 
   <p class="footer">© 2026 DIMPLES F. SUING — MADE WITH ♥</p>
 
-
-  <!-- ==================== JAVASCRIPT ==================== -->
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    const dots = document.querySelectorAll('.dot');
-
-    dots.forEach(function(dot) {
+    document.querySelectorAll('.dot').forEach(function(dot) {
       dot.addEventListener('click', function() {
-
-        const window = dot.closest('.window');
+        var win = dot.closest('.window');
 
         if (dot.classList.contains('red')) {
-          window.style.transform = 'translateX(5px)';
-          setTimeout(function() { window.style.transform = 'translateX(-5px)'; }, 100);
-          setTimeout(function() { window.style.transform = 'translateX(0)'; }, 200);
+          win.style.transform = 'translateX(5px)';
+          setTimeout(function() { win.style.transform = 'translateX(-5px)'; }, 100);
+          setTimeout(function() { win.style.transform = 'translateX(0)'; }, 200);
 
         } else if (dot.classList.contains('yellow')) {
-          window.style.borderColor = '#ffbd2e';
-          setTimeout(function() { window.style.borderColor = ''; }, 500);
+          win.style.borderColor = '#ffbd2e';
+          setTimeout(function() { win.style.borderColor = ''; }, 500);
 
         } else if (dot.classList.contains('green')) {
-          const titleBar = window.querySelector('.window-title');
-          const original = titleBar.textContent;
+          var titleBar = win.querySelector('.window-title');
+          var original = titleBar.textContent;
           titleBar.textContent = '✓ MAXIMIZED!';
           setTimeout(function() { titleBar.textContent = original; }, 1000);
         }
-
       });
     });
   </script>
